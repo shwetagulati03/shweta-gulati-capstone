@@ -1,20 +1,33 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/typography';
+
 .product {
     display: flex;
-    justify-content: space-between;
-    padding: 50px;
 
-    &__card {
-        width: 50%;
-        /* Card occupies left half of the screen */
-        padding: 20px;
-        margin-right: 20px;
-        /* Add some space between the card and product details */
+    padding: 50px;
+    flex-direction: column;
+
+    @include tablet {
+        flex-direction: row;
     }
 
+    &__imglayout {
+
+        object-fit: contain;
+
+        &--img {
+            max-width: 500px;
+            max-height: 500px;
+        }
+    }
 
     &__details {
-        width: 50%;
-        padding: 20px;
+        padding: 60px;
+
+        @include tablet {
+            width: 50%;
+        }
     }
 
     &__name {
@@ -44,12 +57,4 @@
     &:hover {
         background-color: #0056b3;
     }
-}
-
-
-
-.product-image {
-    width: 100%;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

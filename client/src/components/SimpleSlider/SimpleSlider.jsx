@@ -1,6 +1,9 @@
 import React from 'react';
 import Slider from 'react-slick';
 import './SimpleSlider.scss';
+import image1 from '../../assets/images/hero-1.png';
+import image2 from '../../assets/images/hero-1.png';
+import image3 from '../../assets/images/hero-1.png';
 
 const SimpleSlider = ({images}) => {
     const settings = {
