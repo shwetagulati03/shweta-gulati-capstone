@@ -1,12 +1,17 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/typography';
+
 .card {
     background-color: #ffffff;
-
     margin: 12px;
-
     min-width: 200px;
     max-width: 200px;
     min-height: 200px;
-    // Optional: Add box shadow for depth effect
+
+    a {
+        text-decoration: none;
+    }
 
     img {
         max-width: 100%; // Ensure image fits within the card
@@ -14,7 +19,12 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         border: 1px solid #e0e0e0;
         border-radius: 8px; // Set border radius
+    }
 
+    &__title {
+        text-align: center;
+        @include tablet-subheader;
+        color: $gg-blue;
     }
 
 

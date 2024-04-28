@@ -1,6 +1,19 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/typography';
+
 .card-layout {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     width: 100%;
+    text-decoration: none;
+}
+
+.homepage {
+    &__h1 {
+        text-align: center;
+        color: $gg-blue;
+        @include tablet-page-header;
+    }
 }

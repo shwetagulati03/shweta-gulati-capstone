@@ -1,30 +1,42 @@
-    import React from 'react';
-    import Header from '../../components/Header/Header';
+    import React, { useEffect } from 'react';
     import Hero from '../../components/Hero/Hero';
     import Card from '../../components/Card/Card';
     import './HomePage.scss';
-    import ProductListingPage from '../ProductListing/ProductListing';
     import { Link } from 'react-router-dom';
+    import { useState } from 'react';
+    import axios from 'axios';
 
 
     const HomePage = () => {
-
-        const cardsData = [
-            { title: "MUGS", imageUrl:"https://images.deepai.org/art-image/38e6c97ffeb54881b14a17ffb246a8a4/photo-frames-17eeb6.jpg"},
-            { title: "TSHIRTS", imageUrl:"https://images.deepai.org/art-image/e49de637a8a849ca9beb1d1a73679a48/i-need-to-create-a-mugs-category-for-my-site.jpg" },
-            { title: "PILLOWS", imageUrl:"https://images.deepai.org/art-image/e49de637a8a849ca9beb1d1a73679a48/i-need-to-create-a-mugs-category-for-my-site.jpg" },
-            { title: "PHOTO FRAMES", imageUrl:"https://images.deepai.org/art-image/38e6c97ffeb54881b14a17ffb246a8a4/photo-frames-17eeb6.jpg" },
-        ];
+        const [data, setData] = useState([]);
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/category`);
+                setData(response.data);
+            } catch (error) {
+                console.error(`Error fetching data: ${error}`);
+            }
+        }
+    
+        useEffect(() => {
+            fetchData();
+        }, []);
+        console.log(data);
         return (
             <div className="homepage">
                 {/* Render the Header component */}
                 <Hero /> {/* Render the Hero component */}
+
+                <h1 className='homepage__h1'>SHOP BY CATEGORY</h1>
                 <div className="card-layout">
                     {/* Render cards dynamically */}
 
-                    {cardsData.map((card, index) => (
-                        <Link to={`ProductListingPage`}>
-                            <Card key={index} title={card.title} imageUrl={card.imageUrl} categoryName={card.title}>
+                    {data.map((card) => (
+                        <Link to={`/category/${card.id}`} key={card.id}>
+                            <Card  
+                            title={card.name} 
+                             imageUrl={card.url} 
+                            >
                         
                         </Card>
                         </Link>

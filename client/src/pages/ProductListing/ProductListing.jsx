@@ -1,31 +1,42 @@
+import { useParams } from "react-router-dom";
 import Card from "../../components/Card/Card";
 import './ProductListing.scss';
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ProductListingPage = () => {
-    // Static product data for demonstration
-    const products = [
-        { id: 1, name: "Product 1", imageUrl: "https://via.placeholder.com/150" },
-        { id: 2, name: "Product 2", imageUrl: "https://via.placeholder.com/150" },
-        { id: 3, name: "Product 3", imageUrl: "https://via.placeholder.com/150" },
-        { id: 4, name: "Product 1", imageUrl: "https://via.placeholder.com/150" },
-        { id: 5, name: "Product 2", imageUrl: "https://via.placeholder.com/150" },
-        // { id: 6, name: "Product 3", imageUrl: "https://via.placeholder.com/150" },
-        // { id: 7, name: "Product 1", imageUrl: "https://via.placeholder.com/150" },
-        // { id: 8, name: "Product 2", imageUrl: "https://via.placeholder.com/150" },
-        // { id: 9, name: "Product 3", imageUrl: "https://via.placeholder.com/150" },
-        // { id: 10, name: "Product 1", imageUrl: "https://via.placeholder.com/150" },
-        // { id: 11, name: "Product 2", imageUrl: "https://via.placeholder.com/150" },
-        // { id: 12, name: "Product 3", imageUrl: "https://via.placeholder.com/150" },
-        // Add more products as needed
-    ];
+    const {categoryId} =useParams();
+    const [products, setProducts] = useState([]);
+    const [categoryName, setCategoryName] = useState('');
+        const fetchProducts = async () => {
+            try {
+                
+                const response = await axios.get(`http://localhost:8080/category/${categoryId}`);
+                console.log(response);
+                setProducts(response.data);
+                setCategoryName(response.data[0].category_name); 
+            } catch (error) {
+                console.error(`Error fetching data: ${error}`);
+            }
+        }
+    
+        useEffect(() => {
+            fetchProducts();
+        }, [categoryId]);
+      
+        
 
     return (
         <div className="product-listing-page">
-            <h1>Any Products</h1>
+            <h1>{categoryName}</h1>
             <div className="product-list">
                 {/* Render products */}
                 {products.map(product => (
-                    <Card key={product.id} title={product.name} imageUrl={product.imageUrl} />
+                     <Link to={`/products/${product.id}`} key={product.id}>
+                                <Card key={product.id} title={product.name} imageUrl={product.url} />
+                    </Link>
                 ))}
             </div>
         </div>

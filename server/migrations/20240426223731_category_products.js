@@ -8,15 +8,11 @@ exports.up = function(knex) {
         table
           .integer('product_id')
           .unsigned()
-          .references('products.id')
-          .onUpdate('CASCADE')
-          .onDelete('CASCADE');
+          .references('products.id');
         table
           .integer('category_id')
           .unsigned()
-          .references('category.id')
-          .onUpdate('CASCADE')
-          .onDelete('CASCADE');
+          .references('category.id');
         table.timestamp('created_at').defaultTo(knex.fn.now());
         table.timestamp('updated_at').defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
 

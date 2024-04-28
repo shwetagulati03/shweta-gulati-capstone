@@ -2,12 +2,12 @@ import React from 'react';
 import './Card.scss';
 
 
-function Card({ children,imageUrl,categoryName }) {
+function Card({ title,imageUrl }) {
     return (
         <div className='card'>
-             {imageUrl && <img src={imageUrl} />} {/* Render the image if imageUrl is provided */}
-            <div className="card-content">{children}
-            <p>{categoryName}</p> 
+             {imageUrl && <img src={imageUrl} alt={title}/>} {/* Render the image if imageUrl is provided */}
+            <div>
+            <p className='card__title'>{title}</p> 
             </div>
         </div>
     );
