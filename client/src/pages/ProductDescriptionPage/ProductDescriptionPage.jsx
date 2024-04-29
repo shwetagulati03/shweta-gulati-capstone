@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 function ProductDescriptionPage() {
@@ -30,6 +31,7 @@ useEffect(() => {
 
 
 
+
   return (
     <div className="product">
             <div className='product__imglayout'>
@@ -41,7 +43,7 @@ useEffect(() => {
                 <p className="product__description">{product.description}</p>
                 <div><button className="add-to-cart-btn" >Add to Cart</button></div>
                  <p className="product__description">-------OR------</p>
-                <div><button className="add-to-cart-btn" >Customize Product</button></div>
+                 <div><Link to={{ pathname: `/products/${productId}/generate`, state: { productId: productId } }} className="add-to-cart-btn">Customize Design</Link></div>
                 <p className="product__description">* By just paying 35% extra </p>
             </div>
         </div>
