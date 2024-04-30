@@ -43,7 +43,7 @@ useEffect(() => {
                 <p className="product__description">{product.description}</p>
                 <div><button className="add-to-cart-btn" >Add to Cart</button></div>
                  <p className="product__description">-------OR------</p>
-                 <div><Link to={{ pathname: `/products/${productId}/generate`, state: { productId: productId } }} className="add-to-cart-btn">Customize Design</Link></div>
+                 <div><Link to= {`/products/${productId}/generate`} className="add-to-cart-btn">Customize Design</Link></div>
                 <p className="product__description">* By just paying 35% extra </p>
             </div>
         </div>

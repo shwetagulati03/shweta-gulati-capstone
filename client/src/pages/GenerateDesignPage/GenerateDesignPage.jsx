@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 function GenerateDesignPage() {
   const [uploadedImage, setUploadedImage] = useState(null);
+  const {productId} = useParams();
   const [textInput, setTextInput] = useState('');
   const [generatedDesign, setGeneratedDesign] = useState('');
   const [finalDesign, setFinalDesign] = useState(null);
@@ -33,15 +35,14 @@ function GenerateDesignPage() {
       //to do
     const data = {
     output_url: "https://picsum.photos/200/300"
-      };
-        console.log("about to hit");
+     };
+        // console.log("about to hit");
         // const response = await axios.post('http://localhost:8080/generate', { text: textInput }, {
         //     headers: {
         //       'Content-Type': 'application/json'
         //     }
         //   });
-  
-      //const data = await response.data;
+        //const data = await response.data;
           console.log(data);
     setGeneratedDesign(data.output_url); 
     setFinalDesign(data.output_url);
