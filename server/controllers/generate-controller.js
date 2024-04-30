@@ -1,16 +1,16 @@
 const axios = require('axios');
+require("dotenv").config();
 
 const generateFile = async (req, res) => {
     console.log("before try");
     const { text } = req.body;
     try{
-        const formData = new URLSearchParams();
-    formData.append('text', text);
+        const formData = {text};
     const resp = await axios.post('https://api.deepai.org/api/text2img',formData, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'api-key': "7f25a60b-28f6-412c-817f-26e2aa6fb805"    },
+        'Content-Type': 'application/json',
+        'api-key': process.env.DA_APIKEY    },
     });
     const data = resp.data;
     res.json(data);
