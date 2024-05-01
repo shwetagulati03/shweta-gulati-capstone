@@ -8,5 +8,6 @@ exports.seed = async function(knex) {
   await knex('order-status').insert([
     {id: 1, 'order-status': 'ORDER PLACED',},
     {id: 2,'order-status': 'ORDER FAILED'},
+    {id:3,'order-status': 'IN PROCESS'}
   ]);
 };
