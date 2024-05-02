@@ -53,7 +53,6 @@ const [orderId] = await trx('orders').insert({
   });
   const insertedOrderId = orderId;
 
-  // Insert into the orders_item table for each item
   const promises = items.map(async (item) => {
     await trx('orders_item').insert({
       orders_id: insertedOrderId,
@@ -66,10 +65,8 @@ const [orderId] = await trx('orders').insert({
     });
   });
 
-  // Wait for all insert operations to complete
   await Promise.all(promises);
 
-  // Commit the transaction
   await trx.commit();
 
   console.log('Transaction committed successfully');
@@ -82,6 +79,39 @@ const [orderId] = await trx('orders').insert({
 
 }
 
+
+const get = async (req, res) => {
+  const {id} = req.params;
+  console.log(req.params);
+  console.log("here we get",id);
+  try {
+    const order = await knex('orders')
+      .select('*')
+      .where('id', id)
+      .first();
+
+      console.log(id);
+      console.log("LOG order",order);
+
+    const orderItems = await knex('orders_item')
+      .select('products_id', 'quantity', 'price', 'custom_url', 'image_data','orders_type')
+      .where('orders_id', id);
+
+    const orderDetails = {
+      user_id: order.users_id,
+      recipient_id: order.recipient_id,
+      order_total: order.order_total,
+      items: orderItems
+    };
+
+    res.json(orderDetails);
+  } catch (error) {
+    console.error('Error fetching order details:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
+
 module.exports = {
-add
+add,get
 }
