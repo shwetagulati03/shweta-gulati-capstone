@@ -67,7 +67,9 @@ const handlePlaceOrder = async () => {
     alert('Total for the order:', orderData.order_total);
     const response = await axios.post(`http://localhost:8080/orders`, orderData);
     console.log('Order placed successfully:', response.data);
-    navigate('/order-success'); 
+    const orderId = response.data.orders_id; 
+    console.log(orderId);
+    navigate(`/orders/${orderId}`);
 
   } catch (error) {
     console.error('Error placing order:', error);
