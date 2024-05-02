@@ -9,11 +9,11 @@ exports.up = function(knex) {
         table.integer('quantity').unsigned();
         table.integer('price').unsigned();
         table.integer('orders_id').unsigned().references('id').inTable('orders');
-        table.string('custom_url');
+        table.string('custom_url').nullable();
+        table.specificType('image_data', 'longblob').nullable();
         table.integer('orders_type').unsigned().references('id').inTable('order-type');
         table.timestamp('created_at').defaultTo(knex.fn.now());
         table.timestamp('updated_at').defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
-
         });
 };
 

@@ -61,6 +61,7 @@ const [orderId] = await trx('orders').insert({
       quantity: item.quantity || 1,
       price: item.price,
       custom_url: item.custom_url,
+      image_data: item.image_data,
       orders_type: item.order_type
     });
   });
