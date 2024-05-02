@@ -9,12 +9,12 @@ export default function Hero() {
     
     return (
         <div className="hero__container">
-             {/* <div className="hero__content">
+             {/* { <div className="hero__content">
                 <div className="hero__slider">
                 <img src={image1} alt="Static Image" className="hero__slider--image" />
                 <SimpleSlider images={sliderImages} />
                 </div>
-            </div>        */}
+            </div>        } */}
             
         </div>
     )

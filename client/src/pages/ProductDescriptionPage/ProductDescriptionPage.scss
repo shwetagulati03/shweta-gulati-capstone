@@ -5,8 +5,9 @@
 .product {
     display: flex;
 
-    padding: 100px;
+    padding: 50px;
     flex-direction: column;
+    align-items: center;
 
     @include tablet {
         flex-direction: row;
@@ -26,6 +27,8 @@
         padding: 60px;
         padding-top: 30px;
         justify-content: center;
+        display: flex;
+        flex-direction: column;
 
         @include tablet {
             width: 50%;
@@ -35,20 +38,27 @@
     &__name {
         font-size: 24px;
         margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
     }
 
     &__price {
         font-size: 18px;
         margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
     }
 
     &__description {
         margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
     }
 }
 
 .add-to-cart-btn {
     padding: 10px 20px;
+
     font-size: 16px;
     background-color: #007bff;
     color: #fff;
@@ -59,4 +69,24 @@
     &:hover {
         background-color: #0056b3;
     }
+}
+
+.button-wrapper {
+    width: 8rem;
+    height: 36px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+
+    @include tablet {
+        width: unset;
+        height: 38px;
+        margin-left: 1rem;
+        margin-left: 30px;
+    }
+}
+
+
+a {
+    text-decoration: none;
 }

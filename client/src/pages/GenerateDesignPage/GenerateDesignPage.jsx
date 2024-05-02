@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import './GenerateDesignPage.scss';
+import Button from '../../components/Button/Button';
 
 function GenerateDesignPage() {
   const [uploadedImage, setUploadedImage] = useState(null);
@@ -59,28 +61,32 @@ function GenerateDesignPage() {
 
   return (
     <div className="generatepage">
-      <h1>Customize Your Design</h1>
-      <div className="left-panel">
-        <h2>Upload Image</h2>
-        <input type="file" accept="image/*" onChange={handleImageUpload} />
-        <h2>Create Design from Text</h2>
-        <textarea value={textInput} onChange={handleTextInputChange} rows={4} cols={50} />
-        <button onClick={generateDesignFromText}>Generate Design from Text</button>
-      </div>
+      <h1>Create or Upload Your Design</h1>
+        <div className='generatepage__panels'>
+            <div className="generatepage__left">
+               <h2 className='generatepage__left--h2'>Upload your own design</h2>
+               <div className='generatepage__left--upload'>
+                  <input className="generatepage__left--upload-input" type="file" accept="image/*" onChange={handleImageUpload} />
+                <Button>Upload Image</Button></div>
+               <h2 className='generatepage__left--h2'>Create Design from Text</h2>
+              <textarea className='generatepage__left--text' value={textInput} onChange={handleTextInputChange} />
+               <button className='generatepage__left--button' onClick={generateDesignFromText}>Generate Design from Text</button>
+            </div>
     
-      <div className="right-panel">
-      {showUploadedImage && uploadedImage && (
-          <img src={uploadedImage} alt="Design" style={{ maxWidth: '200px' }} />
-        )}
-        {!showUploadedImage && generatedDesign && (
-          <img src={generatedDesign} alt="Design" style={{ maxWidth: '200px' }} />
-        )}
-        <button onClick={addToCart}>Add to Cart</button>
+            <div className="generatepage__right">
+          <div className={showUploadedImage ? "generatepage__right--img" : "generatepage__right--img-placeholder"}>
+            {showUploadedImage && uploadedImage && (
+              <img src={uploadedImage} alt="Design" style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto' }} />
+            )}
+            {!showUploadedImage && generatedDesign && (
+              <img src={generatedDesign} alt="Design"style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto' }} />
+            )}
+          </div>
+          <button className='generatepage__right--place' onClick={addToCart}>PLACE ORDER</button>
+        </div>
       </div>
-      </div>
-
-     );
-  
+    </div>
+  );
 };
 
 export default GenerateDesignPage;
