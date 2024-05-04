@@ -1,14 +1,15 @@
 const router = require("express").Router();
 const categoryController = require("../controllers/category-controller");
+const { tokenVerify } = require("../middleware/auth.middleware");
 
 router.route("/")
-	.get(categoryController.index);
+	.get(tokenVerify,categoryController.index);
 
 // router.route("/products/:id")
 // 	.get(categoryController.categoryProducts);
 
 router.route("/:id")
-	.get(categoryController.categoryProducts);
+	.get(tokenVerify,categoryController.categoryProducts);
 
 
 	module.exports = router;

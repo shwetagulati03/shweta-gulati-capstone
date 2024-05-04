@@ -1,13 +1,14 @@
 const router = require("express").Router();
 const ordersController = require("../controllers/orders-controller");
+const { tokenVerify } = require("../middleware/auth.middleware");
 
 router.route("/")
-	.post(ordersController.add);
+	.post(tokenVerify,ordersController.add);
 
 router.route("/:id")
-	.get(ordersController.get);
+	.get(tokenVerify,ordersController.get);
 
 router.route("/:id")
-	.put(ordersController.put);
+	.put(tokenVerify,ordersController.put);
 
 	module.exports = router;
