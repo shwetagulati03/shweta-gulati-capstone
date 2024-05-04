@@ -11,4 +11,7 @@ router.route("/:id")
 router.route("/:id")
 	.put(tokenVerify,ordersController.put);
 
+router.route("/recipient")
+	.post(tokenVerify,ordersController.recipient);
+
 	module.exports = router;

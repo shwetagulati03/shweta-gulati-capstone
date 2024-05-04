@@ -41,13 +41,13 @@ const add = async (req, res) => {
 //       });
 //     }
 //   };
-
-const { user_id, recipient_id, order_total, status_id, items } = req.body;
+console.log(req.id);
+console.log(req.user_id);
+const { order_total, status_id, items } = req.body;
 const trx = await knex.transaction();
 try{
 const [orderId] = await trx('orders').insert({
-    users_id: user_id,
-    recipient_id: recipient_id,
+    users_id: req.user_id,
     order_total: order_total,
     order_status_id: 3
   });
@@ -98,8 +98,7 @@ const get = async (req, res) => {
       .where('orders_id', id);
 
     const orderDetails = {
-      user_id: order.users_id,
-      recipient_id: order.recipient_id,
+      users_id: req.user_id,
       order_total: order.order_total,
       items: orderItems
     };
@@ -120,22 +119,55 @@ try {
   // Retrieve orders table from the database
   const orders = await knex('orders');
 
-  // Use Knex's update method to update the order_status_id of the found order
+  
   const updatedOrder = await knex('orders')
-    .where({ id }) // Find order by id
-    .update({ order_status_id }); // Update order_status_id
+    .where({ id }) 
+    .update({ order_status_id }); 
 
   if (!updatedOrder) {
     return res.status(404).json({ error: 'Order not found' });
   }
 
-  // Return the updated order
+  
   res.json(updatedOrder);
 } catch (error) {
   console.error('Error updating order:', error);
   res.status(500).json({ error: 'Internal server error' });
 }
-};
+}
+
+
+const recipient = async (req, res) =>
+{
+  const{user_name,user_email,user_mobile,user_address,user_city,user_state,user_country,user_zipcode} = req.body;
+  try{
+      const [recipientId] = await knex('recipients').insert({
+         user_name: user_name,
+         user_email:user_email,
+         user_mobile:user_mobile,
+         user_address:user_address,
+         user_city:user_city,
+         user_state:user_state,
+         user_country:user_country,
+         user_zipcode:user_zipcode
+        });
+
+        const newRecord = await knex("recipients")
+         .where({ id:recipientId })
+         .first();
+  
+      res.status(201).json({ recipient_id: recipientId, recipient: newRecord });  
+
+  }
+  catch(error){
+    console.error('Error fetching details:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+
+
+
+}
+
 module.exports = {
-add,get,put
+add,get,put,recipient
 }

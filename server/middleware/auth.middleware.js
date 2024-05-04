@@ -16,11 +16,11 @@ console.log("auth"+authorization);
 
     try {
         const payload = jwt.verify(token, process.env.SECRET_KEY);
-        console.log(payload);
-
-        //if it is valuid, call next(), passing the payload through
-        // the role lookup potentially
+        console.log("payload:",payload);
         req.userObj = payload;
+        const { id } = payload;
+        req.user_id = id;
+        console.log(req.user_id);
 
         next();
 
