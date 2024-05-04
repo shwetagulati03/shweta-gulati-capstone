@@ -71,8 +71,23 @@ const OrderDetailsPage = () => {
     e.preventDefault();
     
     try {
-      const response = await axios.put(`http://localhost:8080/orders/${orderId}`, {
+
+      const recipientResponse = await axios.post('http://localhost:8080/orders/recipient', {
+      user_name: name,
+      user_email: email,
+      user_mobile: mobile,
+      user_address: address,
+      user_city: city,
+      user_state: state,
+      user_country: country,
+      user_zipcode: zipcode
+    });
+    console.log(recipientResponse);
+    const recipientId = recipientResponse.data.recipient_id;
+    console.log(recipientId);
+    const orderResponse = await axios.put(`http://localhost:8080/orders/${orderId}`, {
         order_status_id: 1,
+        recipient_id: recipientId
       });
       navigate(`/order-success`);
     } catch (error) {

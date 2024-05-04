@@ -118,8 +118,7 @@ function GenerateDesignPage() {
       }
     ]
     const orderData = {
-      user_id: "1",
-      recipient_id: "1",
+      
       order_total: orderTotal,
       items: items
     };
