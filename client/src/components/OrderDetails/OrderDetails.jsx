@@ -1,8 +1,10 @@
 import React from 'react';
 
-const OrderDetails = ({ order,orderId }) => {
+const OrderDetails = ({ order, orderId }) => {
   console.log(order);
   console.log(orderId);
+
+
   return (
     <div>
       <h3>Order Details</h3>
@@ -16,10 +18,10 @@ const OrderDetails = ({ order,orderId }) => {
             <p>Quantity: {item.quantity}</p>
             <p>Price: ${item.price}</p>
             {item.custom_url && (
-                <img src={item.custom_url} alt="Custom Design" />
+              <img src={item.custom_url} alt="Custom Design" />
             )}
             {item.image_data && (
-            <img src={`data:image/jpeg;base64,${item.image_data}`} alt="Uploaded Design" />
+              <img src={`data:image/jpeg;base64,${item.image_data}`} alt="Uploaded Design" />
             )}
           </li>
         ))}

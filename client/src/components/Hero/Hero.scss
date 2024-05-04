@@ -33,14 +33,13 @@
 
 .hero__container {
     display: flex;
-    background: url("../../assets/images/hero-1.png");
+    background: url("../../assets/images/hero.jpeg");
     position: relative;
-
+    background-color: #FCE1E8;
     width: 100%;
-    height: 80vh;
+    height: 90vh;
     background-repeat: no-repeat;
-    background-color: #f7ce6a;
-    ;
+    object-fit: cover;
     background-size: contain;
     background-position: center center;
     align-items: center;

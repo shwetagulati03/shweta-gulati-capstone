@@ -111,7 +111,31 @@ const get = async (req, res) => {
   }
 }
 
+const put = async (req, res) =>{
+const id= req.params.id;
+console.log(id);
+const { order_status_id} = req.body;
 
+try {
+  // Retrieve orders table from the database
+  const orders = await knex('orders');
+
+  // Use Knex's update method to update the order_status_id of the found order
+  const updatedOrder = await knex('orders')
+    .where({ id }) // Find order by id
+    .update({ order_status_id }); // Update order_status_id
+
+  if (!updatedOrder) {
+    return res.status(404).json({ error: 'Order not found' });
+  }
+
+  // Return the updated order
+  res.json(updatedOrder);
+} catch (error) {
+  console.error('Error updating order:', error);
+  res.status(500).json({ error: 'Internal server error' });
+}
+};
 module.exports = {
-add,get
+add,get,put
 }

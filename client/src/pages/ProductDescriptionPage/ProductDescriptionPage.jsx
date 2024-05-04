@@ -85,8 +85,22 @@ const handlePlaceOrder = async () => {
                 <h2 className="product__name">{product.name}</h2>
                 <p className="product__price">CAD {product.price}</p>
                 <p className="product__description">{product.description}</p>
+                <p className="product__name">
+                  DELIVERY INFORMATION
+                </p>
+                <p className="product__description">
+                  <li>
+                  Since our products are shipped using the services of our courier partners, we will communicate you the date of delivery over email.
+                  </li>
+                  <li>
+                  The delivery cannot be redirected to another address.
+                  </li>
+                  <li>
+                  Soon after the order has been dispatched, you will receive a tracking number that will help you trace your gift.
+                  </li>               
+                </p>
                 <div className='button-wrapper'><Button onClick={handlePlaceOrder}>Place Order</Button></div>
-                 <p className="product__description"></p>
+             
                  <div className='button-wrapper'>
                   <Link to= {`/products/${productId}/generate`} > <Button2>Customize</Button2></Link></div>
                 <p className="product__description">* By just paying CAD 5 extra </p>

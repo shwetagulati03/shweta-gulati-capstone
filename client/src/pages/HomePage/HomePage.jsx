@@ -11,8 +11,10 @@
         const [data, setData] = useState([]);
         const fetchData = async () => {
             try {
+                console.log(localStorage.getItem("authToken"));
                 const response = await axios.get(`http://localhost:8080/category`);
                 setData(response.data);
+                
             } catch (error) {
                 console.error(`Error fetching data: ${error}`);
             }
@@ -35,7 +37,8 @@
                         <Link to={`/category/${card.id}`} key={card.id}>
                             <Card  
                             title={card.name} 
-                             imageUrl={card.url} 
+                             imageUrl= "https://digicsd.com/uploads/imgpsh_fullsize_anim.png"
+                             //{card.url} 
                             >
                         
                         </Card>

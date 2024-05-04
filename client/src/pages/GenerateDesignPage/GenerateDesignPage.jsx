@@ -17,7 +17,6 @@ function GenerateDesignPage() {
   const [showUploadedImage, setShowUploadedImage] = useState(false);
   const [orderData, setOrderData] = useState(null);
   const [product, setProduct] = useState(null);
-
   const navigate = useNavigate();
   useEffect(() => {
     fetchProductDetails();
@@ -41,7 +40,9 @@ function GenerateDesignPage() {
     const reader = new FileReader();
     
     reader.onload = (event) => {
-      setUploadedImage(event.target.result);
+      const base64EncodedImage = event.target.result;
+      
+      setUploadedImage(base64EncodedImage);
       setShowUploadedImage(true);
       setGeneratedDesign('');
     };
@@ -60,16 +61,17 @@ function GenerateDesignPage() {
     try {
       //to do
     const data = {
-    output_url: "https://picsum.photos/200/300"
-     };
+     output_url: "https://picsum.photos/200/300"
+      };
         // console.log("about to hit");
-        // const response = await axios.post('http://localhost:8080/generate', { text: textInput }, {
+        // const textWithProductName = `A ${product.name} with ${textInput}`;
+        // const response = await axios.post('http://localhost:8080/generate', { text: textWithProductName }, {
         //     headers: {
         //       'Content-Type': 'application/json'
         //     }
         //   });
-        //const data = await response.data;
-          console.log(data);
+        // const data = await response.data;
+        //   console.log(data);
     setGeneratedDesign(data.output_url); 
     setFinalDesign(data.output_url);
     setShowUploadedImage(false);

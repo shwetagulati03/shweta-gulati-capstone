@@ -7,7 +7,7 @@ import searchIcon from '../../assets/icons/search.svg';
 function Header(){
 return(
     <header className="header">
-      <Link to="/" className="header__logo-container">
+      <Link to="/home" className="header__logo-container">
         <img src={logo} alt="GiftsGenie Logo" className="header__logo"/>
       </Link>
 

@@ -7,4 +7,7 @@ router.route("/")
 router.route("/:id")
 	.get(ordersController.get);
 
+router.route("/:id")
+	.put(ordersController.put);
+
 	module.exports = router;
