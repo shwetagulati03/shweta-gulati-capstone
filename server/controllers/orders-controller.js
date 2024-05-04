@@ -113,7 +113,7 @@ const get = async (req, res) => {
 const put = async (req, res) =>{
 const id= req.params.id;
 console.log(id);
-const { order_status_id} = req.body;
+const { order_status_id,recipient_id} = req.body;
 
 try {
   // Retrieve orders table from the database
@@ -122,7 +122,7 @@ try {
   
   const updatedOrder = await knex('orders')
     .where({ id }) 
-    .update({ order_status_id }); 
+    .update({ order_status_id,recipient_id }); 
 
   if (!updatedOrder) {
     return res.status(404).json({ error: 'Order not found' });
