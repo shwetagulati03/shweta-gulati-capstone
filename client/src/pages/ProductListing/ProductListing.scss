@@ -1,19 +1,26 @@
-.product-listing-page {
-    padding: 50px;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/typography' as *;
 
-    h1 {
-        margin-bottom: 20px;
+* {
+    box-sizing: border-box;
+    font-family: 'Titillium Web';
+}
+
+.product-listing {
+    padding: 3.125rem;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    &__h1 {
+        color: $gg-coral;
+        margin-bottom: 1.25rem;
     }
 
-    .product-list {
+    &__cards {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-
-        .card {
-            justify-content: center; // Adjusted width with margin only on the right side
-            margin-bottom: 20px; // Add bottom margin between rows
-            margin-right: 20px;
-        }
     }
 }

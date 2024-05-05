@@ -20,7 +20,9 @@ function ProductDescriptionPage() {
 
   const fetchProduct = async () => {
     try {
-        console.log("try");
+        const accessToken=localStorage.getItem("authToken"); 
+        console.log(localStorage.getItem("authToken"));
+        axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
         const response = await axios.get(`http://localhost:8080/products/${productId}`);
         console.log(response);
         setProduct(response.data[0]);
@@ -60,10 +62,12 @@ useEffect(() => {
 
 const handlePlaceOrder = async () => {
   try {
-   
+    const accessToken=localStorage.getItem("authToken"); 
+        console.log(localStorage.getItem("authToken"));
+        axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
     console.log('Placing order for product:', product);
     console.log(orderData.order_total);
-    alert('Total for the order:', orderData.order_total);
+    
     const response = await axios.post(`http://localhost:8080/orders`, orderData);
     console.log('Order placed successfully:', response.data);
     const orderId = response.data.orders_id; 
@@ -78,13 +82,16 @@ const handlePlaceOrder = async () => {
   return (
     <div className="product">
             <div className='product__imglayout'>
-              <img className='product__imglayout--img'  src={product.url} />
+              <img className='product__imglayout--img' src={product.url} />
             </div>
             <div className="product__details">
                 <h2 className="product__name">{product.name}</h2>
-                <p className="product__price">CAD {product.price}</p>
+                <p className="product__price">Price : CAD {product.price}</p>
+                <p className="product__details-h">
+                  DESCRIPTION
+                </p>
                 <p className="product__description">{product.description}</p>
-                <p className="product__name">
+                <p className="product__details-h">
                   DELIVERY INFORMATION
                 </p>
                 <p className="product__description">
@@ -98,11 +105,12 @@ const handlePlaceOrder = async () => {
                   Soon after the order has been dispatched, you will receive a tracking number that will help you trace your gift.
                   </li>               
                 </p>
-                <div className='button-wrapper'><Button onClick={handlePlaceOrder}>Place Order</Button></div>
-             
-                 <div className='button-wrapper'>
+                <div className='button-wrapper'>
+                  <div className='button-wrapper__btn1'>
+                  <Button onClick={handlePlaceOrder}>Place Order</Button>
+                  </div>
                   <Link to= {`/products/${productId}/generate`} > <Button2>Customize</Button2></Link></div>
-                <p className="product__description">* By just paying CAD 5 extra </p>
+                <p className="product__description--custom">**Customize By just paying CAD 5 extra </p>
             </div>
         </div>
   )

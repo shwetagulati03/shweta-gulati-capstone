@@ -13,6 +13,7 @@
     border-radius: 0.5rem;
     cursor: pointer;
     text-align: center;
+    border: solid $gg-coral;
 
     @include tablet {
         width: 12.5rem;
@@ -21,9 +22,6 @@
         font-weight: bold;
     }
 
-    @include desktop {
-        font-weight: bold;
-    }
 
     &:hover {
         background-color: $gg-hover;

@@ -12,7 +12,9 @@ const ProductListingPage = () => {
     const [categoryName, setCategoryName] = useState('');
         const fetchProducts = async () => {
             try {
-                
+                const accessToken=localStorage.getItem("authToken"); 
+                console.log(localStorage.getItem("authToken"));
+                axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
                 const response = await axios.get(`http://localhost:8080/category/${categoryId}`);
                 console.log(response);
                 setProducts(response.data);
@@ -29,10 +31,9 @@ const ProductListingPage = () => {
         
 
     return (
-        <div className="product-listing-page">
-            <h1>{categoryName}</h1>
-            <div className="product-list">
-                {/* Render products */}
+        <div className="product-listing">
+            <h1 className="product-listing__h1">{categoryName}</h1>
+            <div className="product-listing__cards">
                 {products.map(product => (
                      <Link to={`/products/${product.id}`} key={product.id}>
                                 <Card key={product.id} title={product.name} imageUrl={product.url} />
