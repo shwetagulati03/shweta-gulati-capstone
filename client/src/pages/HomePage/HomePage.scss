@@ -2,22 +2,23 @@
 @use '../../styles/partials/variables' as *;
 @use '../../styles/partials/typography';
 
+.homepage {
+    &__h1 {
+        text-align: center;
+        color: $gg-coral;
+        @include mobile-page-header;
+
+        @include tablet {
+            @include tablet-page-header;
+        }
+    }
+}
+
 .card-layout {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     width: 100%;
     text-decoration: none;
-}
-
-.homepage {
-    &__h1 {
-        text-align: center;
-        color: $gg-blue;
-        @include tablet-page-header;
-    }
-}
-
-a {
-    text-decoration: none;
+    padding: 1rem;
 }

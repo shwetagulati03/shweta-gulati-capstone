@@ -5,7 +5,7 @@ import './Card.scss';
 function Card({ title,imageUrl }) {
     return (
         <div className='card'>
-             {imageUrl && <img src={imageUrl} alt={title}/>} {/* Render the image if imageUrl is provided */}
+             <img className='card__img' src={imageUrl} alt={title}></img>
             <div>
             <p className='card__title'>{title}</p> 
             </div>

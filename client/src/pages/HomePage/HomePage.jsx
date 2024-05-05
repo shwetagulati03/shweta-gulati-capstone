@@ -11,7 +11,9 @@
         const [data, setData] = useState([]);
         const fetchData = async () => {
             try {
+                const accessToken=localStorage.getItem("authToken"); 
                 console.log(localStorage.getItem("authToken"));
+                axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
                 const response = await axios.get(`http://localhost:8080/category`);
                 setData(response.data);
                 
@@ -26,19 +28,17 @@
         console.log(data);
         return (
             <div className="homepage">
-                {/* Render the Header component */}
-                <Hero /> {/* Render the Hero component */}
+             
+                <Hero /> 
 
                 <h1 className='homepage__h1'>SHOP BY CATEGORY</h1>
-                <div className="card-layout">
-                    {/* Render cards dynamically */}
+                <div className='card-layout'>
 
                     {data.map((card) => (
                         <Link to={`/category/${card.id}`} key={card.id}>
                             <Card  
                             title={card.name} 
-                             imageUrl= "https://digicsd.com/uploads/imgpsh_fullsize_anim.png"
-                             //{card.url} 
+                             imageUrl= {card.url}
                             >
                         
                         </Card>

@@ -3,28 +3,34 @@
 @use '../../styles/partials/typography';
 
 .card {
-    background-color: #ffffff;
-    margin: 12px;
-    min-width: 200px;
-    max-width: 200px;
-    min-height: 200px;
+    background-color: $white;
+    margin: 0.75rem;
+    min-width: 12.5rem;
+    max-width: 12.5rem;
+    min-height: 12.5rem;
+    transition: transform .5s;
+    text-decoration: none;
 
-    a {
-        text-decoration: none;
+    &:hover {
+        transform: scale(1.10);
     }
 
-    img {
-        max-width: 100%; // Ensure image fits within the card
-        border-radius: 32px; // Rounded corners for the top of the image
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        border: 1px solid #e0e0e0;
-        border-radius: 8px; // Set border radius
+    &__img {
+        max-width: 100%;
+        border-radius: 2rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+        border: 0.0625rem solid $mercury;
+        border-radius: 0.5rem;
     }
 
     &__title {
         text-align: center;
-        @include tablet-subheader;
-        color: $gg-blue;
+        @include mobile-subheader;
+        color: $gg-coral;
+
+        @include tablet {
+            @include tablet-subheader;
+        }
     }
 
 

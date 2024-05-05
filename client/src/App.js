@@ -15,11 +15,15 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("authToken"));
   
   useEffect(() => {
+
     const token = localStorage.getItem('authToken');
+    console.log(token);
     if (token) {
       setIsLoggedIn(true);
     }
   }, []);
+
+  console.log(isLoggedIn);
   return (
     <BrowserRouter>
     <Header></Header>
