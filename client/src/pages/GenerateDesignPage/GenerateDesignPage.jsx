@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import './GenerateDesignPage.scss';
 import Button from '../../components/Button/Button';
+import Button2 from '../../components/Button2/Button2';
 import { useEffect} from 'react';
 import { Navigate } from 'react-router-dom';
 import { resizer } from 'react-image-file-resizer';
@@ -24,12 +25,16 @@ function GenerateDesignPage() {
 
   const fetchProductDetails = async () => {
     try {
+      const accessToken=localStorage.getItem("authToken"); 
+      console.log(localStorage.getItem("authToken"));
+      axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+
       const response = await axios.get(`http://localhost:8080/products/${productId}`);
       const productData = response.data[0];
-    console.log('Product Data:', productData);
-    setProduct(productData);
-    console.log('Product State:', product);
-    console.log('Product Price:', productData.price); 
+      console.log('Product Data:', productData);
+      setProduct(productData);
+      console.log('Product State:', product);
+      console.log('Product Price:', productData.price); 
     } catch (error) {
       console.error('Error fetching product details:', error);
     }
@@ -59,11 +64,14 @@ function GenerateDesignPage() {
   const generateDesignFromText = async () => {
     console.log(textInput);
     try {
-      //to do
+   //   to do
     const data = {
      output_url: "https://picsum.photos/200/300"
       };
         // console.log("about to hit");
+        // const accessToken=localStorage.getItem("authToken"); 
+        // console.log(localStorage.getItem("authToken"));
+        // axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
         // const textWithProductName = `A ${product.name} with ${textInput}`;
         // const response = await axios.post('http://localhost:8080/generate', { text: textWithProductName }, {
         //     headers: {
@@ -126,8 +134,9 @@ function GenerateDesignPage() {
     try{
     console.log('Final design added to cart:', finalDesign);
     console.log(orderData.order_total);
-    alert('Total for the order:', parseInt(orderData.order_total));
-    
+    const accessToken=localStorage.getItem("authToken"); 
+    console.log(localStorage.getItem("authToken"));
+    axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
     const response = await axios.post(`http://localhost:8080/orders`, orderData);
     console.log('Order placed successfully:', response.data);
     const orderId = response.data.orders_id; 
@@ -141,20 +150,11 @@ function GenerateDesignPage() {
 
   return (
     <div className="generatepage">
-      <h1>Create or Upload Your Design</h1>
-        <div className='generatepage__panels'>
-            <div className="generatepage__left">
-               <h2 className='generatepage__left--h2'>Upload your own design</h2>
-               <div className='generatepage__left--upload'>
-                  <input className="generatepage__left--upload-input" type="file" accept="image/*" onChange={handleImageUpload} />
-                <Button>Upload Image</Button></div>
-               <h2 className='generatepage__left--h2'>Create Design from Text</h2>
-              <textarea className='generatepage__left--text' value={textInput} onChange={handleTextInputChange} />
-               <button className='generatepage__left--button' onClick={generateDesignFromText}>Generate Design from Text</button>
-            </div>
-    
-            <div className="generatepage__right">
-          <div className={showUploadedImage ? "generatepage__right--img" : "generatepage__right--img-placeholder"}>
+      <h1 className='generatepage__h1'>Create or Upload Your Design</h1>
+      <div className='generatepage__panels'>
+
+        <div className="generatepage__left">
+            <div className={showUploadedImage ? "generatepage__left--img" : "generatepage__left--img-placeholder"}>
             {showUploadedImage && uploadedImage && (
               <img src={uploadedImage} alt="Design" style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto' }} />
             )}
@@ -162,8 +162,24 @@ function GenerateDesignPage() {
               <img src={generatedDesign} alt="Design"style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto' }} />
             )}
           </div>
-          <Button onClick={addToCart}>PLACE ORDER</Button>
+          
         </div>
+
+            <div className="generatepage__right">
+               <h2 className='generatepage__right--h2'>UPLOAD YOUR OWN DESIGN</h2>
+               <div className='generatepage__right--upload'>
+                  <input className="generatepage__right--upload-input" type="file" accept="image/*" onChange={handleImageUpload} />
+                <Button2>Upload Image</Button2></div>
+                <hr className="generatepage__right--separator" />
+               <h2 className='generatepage__right--h2'>CREATE DESIGN FROM TEXT</h2>
+              <textarea className='generatepage__right--text' value={textInput} onChange={handleTextInputChange} />
+               <Button2 onClick={generateDesignFromText}>Generate Design from Text</Button2>
+               <hr className="generatepage__right--separator" />
+               <div className='generatepage__right--h2'>    </div> 
+               <Button onClick={addToCart}>PLACE ORDER</Button>
+            </div>
+    
+            
       </div>
     </div>
   );
