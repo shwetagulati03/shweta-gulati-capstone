@@ -39,8 +39,7 @@ useEffect(() => {
 useEffect(() => {
   if (product) {
     const calculatedOrderData = {
-      user_id: "1",
-      recipient_id: "1",
+      
       order_total: product.price,
       items: [
         {

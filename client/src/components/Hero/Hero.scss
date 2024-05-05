@@ -37,7 +37,7 @@
     position: relative;
     background-color: #FCE1E8;
     width: 100%;
-    height: 90vh;
+    height: 50vh;
     background-repeat: no-repeat;
     object-fit: cover;
     background-size: contain;
@@ -45,19 +45,7 @@
     align-items: center;
     justify-content: center;
 
-    // &__overlay {
-    //     position: absolute;
-    //     height: 100vh;
-    //     width: 100%;
-    //     top: 0;
-    //     left: 0;
-    //     background: rgba(0, 0, 0, 0.2);
-    //     color: white;
-    //     display: flex;
-    //     justify-content: center;
-    //     flex-direction: column;
-    //     padding-left: 1rem;
-    //     padding-right: 1rem;
-    //     justify-content: space-around;
-    // }
+    @include tablet {
+        height: 90vh;
+    }
 }

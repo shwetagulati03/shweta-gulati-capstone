@@ -1,9 +1,10 @@
+import Button from "../../components/Button/Button";
 import "./LoginPage.scss";
 import axios from "axios";
 
 export default function Login({ setIsLoggedIn }) {
   const handleSubmit = async (event) => {
-    // prevent default behaviour
+   
     event.preventDefault();
 
     const username = event.target.username.value;
@@ -12,7 +13,7 @@ export default function Login({ setIsLoggedIn }) {
     console.log(username, password);
 
     try {
-      // send username/password in a POST request to the API
+     
       const response = await axios.post("http://localhost:8080/users", {
         username: username,
         password: password,
@@ -45,7 +46,10 @@ export default function Login({ setIsLoggedIn }) {
           <input className="login__input" type="password" name="password" />
         </label>
 
-        <button className="login__button">Log in</button>
+        <div className="login__button-container">
+        <Button>Login</Button>
+        </div>
+        
       </form>
     </main>
   );

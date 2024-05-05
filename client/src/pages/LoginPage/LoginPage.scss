@@ -1,21 +1,36 @@
+@use '../../styles/partials/_mixins' as *;
+@use '../../styles/partials/_variables' as *;
+@use '../../styles/partials/_typography' as *;
+
+* {
+    box-sizing: border-box;
+    font-family: 'Titillium Web';
+}
+
+
 .login-page {
-    background-color: #f5f5f5;
-    min-height: 100vh;
+    background-color: $alabaster;
+    min-height: 85vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2rem;
+    position: relative;
 }
 
 .login {
     display: flex;
     flex-direction: column;
-    width: 22rem;
-    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    justify-content: center;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+    background-color: $white;
     border-radius: 0.5rem;
     padding: 2rem 1.5rem;
     margin-bottom: 1rem;
+    height: fit-content;
+    padding-bottom: 3rem;
+    width: 22rem;
+    color: $gg-black;
 
     &__title {
         margin: 0;
@@ -26,35 +41,29 @@
     }
 
     &__field {
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
     }
 
     &__input {
         display: block;
         height: 2rem;
         width: 100%;
-        margin-top: 0.25rem;
-    }
-
-    &__button {
-        margin-top: 1rem;
-        background-color: #1358db;
-        border: 1px solid #1358db;
-        color: #fff;
         border-radius: 0.5rem;
-        padding: 0.5rem;
-        font-size: inherit;
-        cursor: pointer;
-        transition: background-color 0.15s;
+        border: 0.0625rem solid $silver;
+        padding: 0.5rem 1rem;
 
-        &:hover {
-            background-color: #003fc2;
+        &:focus {
+            outline: none;
+            border-color: $gg-hover;
         }
+
     }
 
-    &__message {
-        border-left: 5px solid rgb(225, 81, 52);
-        padding: 0.75rem;
-        margin-bottom: 1rem;
+    &__button-container {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
+
 }
