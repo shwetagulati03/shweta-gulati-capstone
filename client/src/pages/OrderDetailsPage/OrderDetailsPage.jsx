@@ -1,36 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import OrderDetails from '../../components/OrderDetails/OrderDetails';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-
-import { Link } from 'react-router-dom';
-
+import { useParams, useNavigate } from 'react-router-dom';
+import './OrderDetailsPage.scss';
+import Button from '../../components/Button/Button';
 
 const OrderDetailsPage = () => {
-  const navigate=useNavigate();
-  const {orderId}=useParams();
-  console.log( orderId);
-  console.log( {orderId});
-  const [order, setOrder] = useState(null);  
-
+  const { orderId } = useParams();
+  const navigate = useNavigate();
+  const [order, setOrder] = useState(null);
   const [name, setName] = useState("");
-  const [email,setEmail] = useState("");
-  const [mobile,setMobile] =  useState("");
+  const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
   const [address, setAddress] = useState("");
-  const [city,setCity] = useState("");
-  const [country,setCountry] = useState("");
-  const [state,setState] = useState("");
-  const [zipcode,setZipcode] =  useState("");
-  const [activeInput, setActiveInput] = useState(null);
+  const [city, setCity] = useState("");
 
-           
+  const [country, setCountry] = useState("");
+  const [state, setState] = useState("");
+  const [zipcode, setZipcode] = useState("");
+  const [productImages, setProductImages] = useState({}); 
+
   useEffect(() => {
     const fetchOrderDetails = async () => {
       try {
+        const accessToken = localStorage.getItem("authToken");
+        axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
         const response = await axios.get(`http://localhost:8080/orders/${orderId}`);
         setOrder(response.data);
-        console.log(order);
       } catch (error) {
         console.error('Error fetching order details:', error);
       }
@@ -67,25 +62,26 @@ const OrderDetailsPage = () => {
   };
 
 
+ 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    try {
 
+    try {
+      const accessToken = localStorage.getItem("authToken");
+      axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
       const recipientResponse = await axios.post('http://localhost:8080/orders/recipient', {
-      user_name: name,
-      user_email: email,
-      user_mobile: mobile,
-      user_address: address,
-      user_city: city,
-      user_state: state,
-      user_country: country,
-      user_zipcode: zipcode
-    });
-    console.log(recipientResponse);
-    const recipientId = recipientResponse.data.recipient_id;
-    console.log(recipientId);
-    const orderResponse = await axios.put(`http://localhost:8080/orders/${orderId}`, {
+        user_name: name,
+        user_email: email,
+        user_mobile: mobile,
+        user_address: address,
+        user_city: city,
+        user_state: state,
+        user_country: country,
+        user_zipcode: zipcode
+      });
+      const recipientId = recipientResponse.data.recipient_id;
+      const orderResponse = await axios.put(`http://localhost:8080/orders/${orderId}`, {
         order_status_id: 1,
         recipient_id: recipientId
       });
@@ -93,56 +89,98 @@ const OrderDetailsPage = () => {
     } catch (error) {
       console.error('Error submitting order:', error);
     }
-
-    
   };
 
-  console.log(order);
+  useEffect(() => {
+    const fetchProductImage = async (productId) => {
+      try {
+        const response = await axios.get(`http://localhost:8080/products/${productId}`);
+        const imageUrl = response.data[0]?.url;
+        setProductImages((prevImages) => ({
+          ...prevImages,
+          [productId]: imageUrl,
+        }));
+      } catch (error) {
+        console.error('Error fetching product image:', error);
+      }
+    };
+
+    if (order) {
+      order.items.forEach((item) => {
+        if (item.orders_type !== 3) {
+          fetchProductImage(item.products_id);
+        }
+      });
+    }
+  }, [order]);
+
 
   return (
-    <div>
-      {orderId && order ? <OrderDetails order={order} orderId= {orderId} /> : <p>Loading...</p>}
-      <form onSubmit={handleSubmit}>
-        <h3>Recipient Details</h3>
-        <label>
-          Name:
+    <div className='order'>
+      <div className='order-details__wrapper'>
+      <h1 className='order-details__h1'>Order Details</h1>
+      {order && (
+      <div className='order-details'>
+          
+          {order.items.map((item, index) => (
+            <div className='order-details__item' key={index}>
+              <div className='order-details__item--img'>
+              {item.orders_type !== 3 && productImages[item.products_id] && (
+                      <img src={productImages[item.products_id]} alt="Product Design" />
+                    )}
+                {item.orders_type === 3 && (
+                  <img src={item.custom_url} alt="Custom Design" />
+                )}
+              </div>
+                <p className='order-details__item--quantity'>Quantity: {item.quantity}</p>
+                <p className='order-details__item--price'>Price: ${item.price}</p>
+              </div>
+
+          ))}
+          <p className='order-details__item--price'>Order Total: ${order.order_total}</p>
+        </div>
+      )}
+      {!order && <p>Loading...</p>}
+
+      </div>
+      <form className='order-details__form' onSubmit={handleSubmit}>
+        <h2 className='order-details__form--h'>Enter Recipient Details</h2>
+        <label classname='order-details__form--element'>Name: </label>
+        
           <input type="text" name="name" value={name} onChange={handleChangeName} />
-        </label>
-        <label>
-          Email:
+       
+        <label classname='order-details__form--element'> Email:</label>
+         
           <input type="email" name="email" value={email} onChange={handleChangeEmail} />
-        </label>
-        <label>
-          Mobile:
+        
+        <label classname='order-details__form--element'>   Mobile: </label>
+       
           <input type="text" name="mobile" value={mobile} onChange={handleChangeMobile} />
-        </label>
-        <label>
-          Address:
+       
+        <label classname='order-details__form--element'>Address:</label>
+          
           <input type="text" name="address" value={address} onChange={handleChangeAddress} />
-        </label>
-        <label>
-          City:
+        
+        <label classname='order-details__form--element'> City:</label>
+         
           <input type="text" name="city" value={city} onChange={handleChangeCity} />
-        </label>
-        <label>
-          State:
+        
+        <label classname='order-details__form--element'> State: </label>
+          
           <input type="text" name="state" value={state} onChange={handleChangeState} />
-        </label>
-        <label>
-          Country:
+      
+        <label classname='order-details__form--element'>Country:</label>
+      
           <input type="text" name="country" value={country} onChange={handleChangeCountry} />
-        </label>
-        <label>
-          Zipcode:
+        
+        <label classname='order-details__form--element'>Zipcode:</label>
+          
           <input type="text" name="zipcode" value={zipcode} onChange={handleChangeZipcode} />
-        </label>
-        <button type="submit">PLACE ORDER</button>
+        
+        <button type="submit" className='submit' >PLACE ORDER</button>
       </form>
     </div>
   );
 };
 
 export default OrderDetailsPage;
-
-
-
