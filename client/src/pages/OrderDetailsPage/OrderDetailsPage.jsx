@@ -138,6 +138,9 @@ const OrderDetailsPage = () => {
 
           ))}
           <p className='order-details__item--price'>Order Total: ${order.order_total}</p>
+          {order.items.some(item => item.orders_type === 2 || item.orders_type === 3) && (
+            <p className='order-details__item--price'>**Includes Customization Cost</p>
+          )}
         </div>
       )}
       {!order && <p>Loading...</p>}

@@ -58,13 +58,11 @@ useEffect(() => {
 }, [product]);
 
 
-
-
 const handlePlaceOrder = async () => {
   try {
     const accessToken=localStorage.getItem("authToken"); 
-        console.log(localStorage.getItem("authToken"));
-        axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+    console.log(localStorage.getItem("authToken"));
+    axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
     console.log('Placing order for product:', product);
     console.log(orderData.order_total);
     
