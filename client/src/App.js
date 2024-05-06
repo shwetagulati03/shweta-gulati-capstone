@@ -26,7 +26,7 @@ function App() {
   console.log(isLoggedIn);
   return (
     <BrowserRouter>
-    <Header></Header>
+    <Header isLoggedIn={isLoggedIn}></Header>
     <Routes>
         <Route path="/home" element={<HomePage/>}></Route>
         <Route path="/category/:categoryId" element={<ProductListingPage/>} />
