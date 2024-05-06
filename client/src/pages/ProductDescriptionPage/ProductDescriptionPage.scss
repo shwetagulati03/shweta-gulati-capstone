@@ -1,0 +1,121 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/typography';
+
+.product {
+    display: flex;
+    padding-top: 1.25rem;
+    padding-bottom: 0rem;
+    padding-left: 4rem;
+    padding-right: 2rem;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+
+    @include tablet {
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    &__imglayout {
+
+        object-fit: contain;
+        transition: transform .5s;
+
+        &:hover {
+            transform: scale(1.10);
+        }
+
+        &--img {
+            border-radius: 0.5rem;
+        }
+    }
+
+    &__details {
+
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+
+
+        @include tablet {
+            width: 50%;
+            padding-left: 3.75rem;
+            padding-top: 0rem;
+            padding-bottom: 0rem;
+            padding-right: 0rem;
+        }
+    }
+
+    &__name {
+        @include mobile-page-header;
+        margin-bottom: 0.625rem;
+        margin-top: 0rem;
+        display: flex;
+        justify-content: left;
+
+        @include tablet {
+            @include tablet-page-header;
+        }
+    }
+
+    &__details-h {
+        @include mobile-subheader;
+        border-bottom: 0.0938rem solid $mercury;
+
+        @include tablet {
+            @include tablet-subheader
+        }
+    }
+
+    &__price {
+        margin-bottom: 0rem;
+        display: flex;
+        justify-content: left;
+    }
+
+    &__description {
+        margin-top: 0rem;
+        margin-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        @include mobile-body-copy;
+
+        @include tablet {
+            @include tablet-body-copy;
+        }
+
+        &--custom {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            @include mobile-body-copy;
+
+            @include tablet {
+                @include tablet-body-copy
+            }
+        }
+
+    }
+}
+
+.button-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @include tablet {
+        flex-direction: row;
+    }
+
+    &__btn1 {
+        margin-bottom: 1rem;
+    }
+
+    &__txt {}
+}
+
+a {
+    text-decoration: none;
+}

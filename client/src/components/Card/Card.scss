@@ -1,0 +1,38 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/typography';
+
+.card {
+    background-color: $white;
+    margin: 0.75rem;
+    min-width: 12.5rem;
+    max-width: 12.5rem;
+    min-height: 12.5rem;
+    transition: transform .5s;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.10);
+    }
+
+    &__img {
+        max-width: 100%;
+        border-radius: 2rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+        border: 0.0625rem solid $mercury;
+        border-radius: 0.5rem;
+    }
+
+    &__title {
+        text-align: center;
+        @include mobile-subheader;
+        color: $gg-coral;
+
+        @include tablet {
+            @include tablet-subheader;
+        }
+    }
+
+
+}

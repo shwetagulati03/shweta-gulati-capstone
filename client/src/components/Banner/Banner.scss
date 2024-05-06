@@ -1,0 +1,19 @@
+@use '../../styles/partials/_mixins' as *;
+@use '../../styles/partials/_variables' as *;
+@use '../../styles/partials/_typography' as *;
+
+* {
+    box-sizing: border-box;
+    font-family: 'Titillium Web';
+}
+
+.banner__container {
+    background-color: $yellow;
+}
+
+.banner__tabs {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
