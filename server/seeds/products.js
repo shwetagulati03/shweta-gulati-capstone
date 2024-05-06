@@ -7,160 +7,128 @@ exports.seed = async function(knex) {
   await knex('products').del()
   await knex('products').insert([
     { id:1,
-      name: 'Mug 1',
-      description: 'Description for Mug 1',
-      url: 'https://images.deepai.org/art-image/7096f201fc024eb6aa837c8a44350283/i-want-to-create-image-for-mugs-category-on-my-e-comm.jpg',
+      name: 'Mug',
+      description: 'Mug for cat lovers',
+      url: 'http://3.111.211.48/mugs/mug1.PNG',
       price: '4'
     },
     { id:2,
-      name: 'Mug 2',
-      description: 'Description for Mug 2',
-      url: 'https://images.deepai.org/art-image/7096f201fc024eb6aa837c8a44350283/i-want-to-create-image-for-mugs-category-on-my-e-comm.jpg',
+      name: 'Mug',
+      description: 'Mug for coffee lovers',
+      url: 'http://3.111.211.48/mugs/mug2.PNG',
       price: '4'
     },
     { id:3,
-      name: 'Mug 3',
-      description: 'Description for Mug 3',
-      url: 'https://images.deepai.org/art-image/7096f201fc024eb6aa837c8a44350283/i-want-to-create-image-for-mugs-category-on-my-e-comm.jpg',
+      name: 'Mug',
+      description: 'Ideal gift for Mothers Day',
+      url: 'http://3.111.211.48/mugs/mug3.PNG',
       price: '4'
     },
     { id:4,
-      name: 'Mug 4',
-      description: 'Description for Mug 4',
-      url: 'https://images.deepai.org/art-image/7096f201fc024eb6aa837c8a44350283/i-want-to-create-image-for-mugs-category-on-my-e-comm.jpg',
+      name: 'Mug',
+      description: 'Ideal gift for birthday',
+      url: 'http://3.111.211.48/mugs/mug4.png',
       price: '4'
     },
     { id:5,
-      name: 'Mug 5',
-      description: 'Description for Mug 5',
-      url: 'https://images.deepai.org/art-image/7096f201fc024eb6aa837c8a44350283/i-want-to-create-image-for-mugs-category-on-my-e-comm.jpg',
+      name: 'Mug',
+      description: 'Mug with a motivational quote',
+      url: 'http://3.111.211.48/mugs/mug5.png',
       price: '4'
     },
     { id:6,
-      name: 'Pillow 1',
-      description: 'Description for Pillow 1',
-      url: 'https://images.deepai.org/art-image/835af824ba594c7ba1dd79fca0f0d6f0/i-want-to-create-image-for-pillows-category-on-my-e-c.jpg',
-      price: '8'
+      name: 'Pillow',
+      description: 'Pillow for plant lovers',
+      url: 'http://3.111.211.48/pillows/pillow1.jpg',
+      price: '6'
     },
     { id:7,
-      name: 'Pillow 2',
-      description: 'Description for Pillow 2',
-      url: 'https://images.deepai.org/art-image/835af824ba594c7ba1dd79fca0f0d6f0/i-want-to-create-image-for-pillows-category-on-my-e-c.jpg',
-      price: '8'
+      name: 'Pillow',
+      description: 'Gift this designer pillow',
+      url: 'http://3.111.211.48/pillows/pillow2.jpg',
+      price: '6'
     },
     { id:8,
-      name: 'Pillow 3',
-      description: 'Description for Pillow 3',
-      url: 'https://images.deepai.org/art-image/835af824ba594c7ba1dd79fca0f0d6f0/i-want-to-create-image-for-pillows-category-on-my-e-c.jpg',
-      price: '8'
+      name: 'Pillow',
+      description: 'Owls design',
+      url: 'http://3.111.211.48/pillows/pillow3.jpg',
+      price: '6'
     },
     { id:9,
-      name: 'Pillow 4',
-      description: 'Description for Pillow 4',
-      url: 'https://images.deepai.org/art-image/835af824ba594c7ba1dd79fca0f0d6f0/i-want-to-create-image-for-pillows-category-on-my-e-c.jpg',
-      price: '8'
+      name: 'Pillow',
+      description: 'Gift this pillow',
+      url: 'http://3.111.211.48/pillows/pillow4.jpg',
+      price: '6'
     },
     { id:10,
-      name: 'Pillow 5',
-      description: 'Description for Pillow 5',
-      url: 'https://images.deepai.org/art-image/835af824ba594c7ba1dd79fca0f0d6f0/i-want-to-create-image-for-pillows-category-on-my-e-c.jpg',
-      price: '8'
+      name: 'Pillow',
+      description: 'Gift this designer pillow',
+      url: 'http://3.111.211.48/pillows/pillow5.jpg',
+      price: '6'
     },
     { id:11,
-      name: 'T-shirt 1',
-      description: 'Description for T-shirt 1',
-      url: 'https://images.deepai.org/art-image/e17202526f4e4dd78967ee2b3a41b9a3/i-want-to-create-image-for-plain-t-shirts-category-on.jpg',
+      name: 'Blanket',
+      description: 'White Blanket',
+      url: 'http://3.111.211.48/blankets/white_blanket.jpg',
       price: '8'
     },
     { id:12,
-      name: 'T-shirt 2',
-      description: 'Description for T-shirt 2',
-      url: 'https://images.deepai.org/art-image/e17202526f4e4dd78967ee2b3a41b9a3/i-want-to-create-image-for-plain-t-shirts-category-on.jpg',
+      name: 'Blanket',
+      description: 'White and Black Blanket',
+      url: 'http://3.111.211.48/blankets/white_n_black%20(1).jpg',
       price: '8'
     },
     { id:13,
-      name: 'T-shirt 3',
-      description: 'Description for T-shirt 3',
-      url: 'https://images.deepai.org/art-image/e17202526f4e4dd78967ee2b3a41b9a3/i-want-to-create-image-for-plain-t-shirts-category-on.jpg',
+      name: 'Blanket',
+      description: 'Boho Styled Blanket',
+      url: 'http://3.111.211.48/blankets/Boho_blanket.jpg',
       price: '8'
     },
     { 
       id:14,
-      name: 'T-shirt 4',
-      description: 'Description for T-shirt 4',
-      url: 'https://images.deepai.org/art-image/e17202526f4e4dd78967ee2b3a41b9a3/i-want-to-create-image-for-plain-t-shirts-category-on.jpg',
+      name: 'Blanket',
+      description: 'Crochet Blanket',
+      url: 'http://3.111.211.48/blankets/crochet_blanket.jpg',
       price: '8'
     },
     { 
       id:15,
-      name: 'T-shirt 5',
-      description: 'Description for T-shirt 5',
-      url: 'https://images.deepai.org/art-image/e17202526f4e4dd78967ee2b3a41b9a3/i-want-to-create-image-for-plain-t-shirts-category-on.jpg',
+      name: 'Blanket',
+      description: 'Blue Blanket',
+      url: 'http://3.111.211.48/blankets/blue_blanket.jpg',
       price: '8'
     },
     { 
       id:16,
-      name: 'Photo Frame 1',
-      description: 'Description for Photo Frame 1',
-      url: 'https://images.deepai.org/art-image/245abde0a70a41dbb01dc5a6689236eb/i-want-to-create-image-for-photo-frames-category-on-m.jpg',
-      price: '8'
+      name: 'T-shirt',
+      description: 'White t-shirt with design',
+      url: 'http://3.111.211.48/Tshirts/t-shirt1.jpg',
+      price: '5'
     },
     { 
       id:17,
-      name: 'Photo Frame 2',
-      description: 'Description for Photo Frame 2',
-      url: 'https://images.deepai.org/art-image/245abde0a70a41dbb01dc5a6689236eb/i-want-to-create-image-for-photo-frames-category-on-m.jpg',
-      price: '8'
+      name: 'T-shirt',
+      description: 'White t-shirt with design',
+      url: 'http://3.111.211.48/Tshirts/t-shirt2.jpg',
+      price: '5'
     },
     { id:18,
-      name: 'Photo Frame 3',
-      description: 'Description for Photo Frame 3',
-      url: 'https://images.deepai.org/art-image/245abde0a70a41dbb01dc5a6689236eb/i-want-to-create-image-for-photo-frames-category-on-m.jpg',
-      price: '8'
+      name: 'T-shirt',
+      description: 'Red Tshirt',
+      url: 'http://3.111.211.48/Tshirts/t-shirt3.jpg',
+      price: '5'
     },
     { id:19,
-      name: 'Photo Frame 4',
-      description: 'Description for Photo Frame 4',
-      url: 'https://images.deepai.org/art-image/245abde0a70a41dbb01dc5a6689236eb/i-want-to-create-image-for-photo-frames-category-on-m.jpg',
-      price: '8'
+      name: 'T-shirt',
+      description: 'Blue Tshirt',
+      url: 'http://3.111.211.48/Tshirts/t-shirt4.jpg',
+      price: '5'
     },
     { id:20,
-      name: 'Photo Frame 5',
-      description: 'Description for Photo Frame 5',
-      url: 'https://images.deepai.org/art-image/245abde0a70a41dbb01dc5a6689236eb/i-want-to-create-image-for-photo-frames-category-on-m.jpg',
-      price: '8'
+      name: 'T-Shirt',
+      description: 'White T-shirt',
+      url: 'http://3.111.211.48/Tshirts/t-shirt5.jpg',
+      price: '5'
     },
-    { id:21,
-      name: 'Clock 1',
-      description: 'Description for Clock 1',
-      url: 'https://images.deepai.org/art-image/ba410870d77d433692034bd0fa9fae1c/i-want-to-create-image-for-wall-clock-category-on-my-.jpg',
-      price: '20'
-    },
-    { 
-      id:22,
-      name: 'Clock 2',
-      description: 'Description for Clock 2',
-      url: 'https://images.deepai.org/art-image/ba410870d77d433692034bd0fa9fae1c/i-want-to-create-image-for-wall-clock-category-on-my-.jpg',
-      price: '20'
-    },
-    { 
-      id:23,
-      name: 'Clock 3',
-      description: 'Description for Clock 3',
-      url: 'https://images.deepai.org/art-image/ba410870d77d433692034bd0fa9fae1c/i-want-to-create-image-for-wall-clock-category-on-my-.jpg',
-      price: '20'
-    },
-    { id:24,
-      name: 'Clock 4',
-      description: 'Description for Clock 4',
-      url: 'https://images.deepai.org/art-image/ba410870d77d433692034bd0fa9fae1c/i-want-to-create-image-for-wall-clock-category-on-my-.jpg',
-      price: '20'
-    },
-    {id:25, 
-      name: 'Clock 5',
-      description: 'Description for Clock 5',
-      url: 'https://images.deepai.org/art-image/ba410870d77d433692034bd0fa9fae1c/i-want-to-create-image-for-wall-clock-category-on-my-.jpg',
-      price: '20'
-    }
-  ]);
+      ]);
 };
