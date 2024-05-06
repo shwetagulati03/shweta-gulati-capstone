@@ -65,21 +65,21 @@ function GenerateDesignPage() {
     console.log(textInput);
     try {
    //   to do
-    const data = {
-     output_url: "https://picsum.photos/200/300"
-      };
+    // const data = {
+    //  output_url: "https://picsum.photos/200/300"
+    //   };
         // console.log("about to hit");
-        // const accessToken=localStorage.getItem("authToken"); 
-        // console.log(localStorage.getItem("authToken"));
-        // axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-        // const textWithProductName = `A ${product.name} with ${textInput}`;
-        // const response = await axios.post('http://localhost:8080/generate', { text: textWithProductName }, {
-        //     headers: {
-        //       'Content-Type': 'application/json'
-        //     }
-        //   });
-        // const data = await response.data;
-        //   console.log(data);
+        const accessToken=localStorage.getItem("authToken"); 
+        console.log(localStorage.getItem("authToken"));
+        axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+        const textWithProductName = `A white ${product.name} with ${textInput}`;
+        const response = await axios.post('http://localhost:8080/generate', { text: textWithProductName }, {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+        const data = await response.data;
+          console.log(data);
     setGeneratedDesign(data.output_url); 
     setFinalDesign(data.output_url);
     setShowUploadedImage(false);
