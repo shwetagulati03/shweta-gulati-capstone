@@ -38,7 +38,7 @@
                         <Link to={`/category/${card.id}`} key={card.id}>
                             <Card  
                             title={card.name} 
-                             imageUrl= {card.url}
+                            imageUrl= {card.url}
                             >
                         
                         </Card>

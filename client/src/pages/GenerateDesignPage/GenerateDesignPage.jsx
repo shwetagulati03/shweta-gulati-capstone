@@ -72,7 +72,7 @@ function GenerateDesignPage() {
         const accessToken=localStorage.getItem("authToken"); 
         console.log(localStorage.getItem("authToken"));
         axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-        const textWithProductName = `A white ${product.name} with ${textInput}`;
+        const textWithProductName = `A white ${product.name} having ${textInput}`;
         const response = await axios.post('http://localhost:8080/generate', { text: textWithProductName }, {
             headers: {
               'Content-Type': 'application/json'
