@@ -35,7 +35,7 @@ Users of all ages who are looking for personalized gifting solutions for any occ
   DB_NAME=<YOUR_DB_NAME>
   DB_USER=<YOUR_DB_USER>
   DB_PASSWORD=<YOUR_DB_PASSWORD>
-  DA_APIKEY=<API_KEY>
+  DA_APIKEY=<SHARED>
 
 - Create a new MySQL Database called 'giftsgenie'
 
