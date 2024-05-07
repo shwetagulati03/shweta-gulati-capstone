@@ -48,6 +48,8 @@ Users of all ages who are looking for personalized gifting solutions for any occ
   DB_USER=<YOUR_DB_USER>
   DB_PASSWORD=<YOUR_DB_PASSWORD>
   DA_APIKEY=<SHARED>
+  SECRET_KEY=<JWT_SECRET_KEY>
+  
 - Install all the dependencis
 
 - Create a new MySQL Database called 'giftsgenie'
@@ -56,6 +58,9 @@ Users of all ages who are looking for personalized gifting solutions for any occ
   For each table, run 'npx knex migrate:make [schema name]' replacing schema name with table names.Included in Github
 - Seed Data
   Run npx knex seed:run to execute all seed files and add seed data to the database and some tables.
+  Please run npx knex:seed run 
+  And then please run this command to run seed file for category product mapping
+  npx knex seed:run --specific=category_products.js
 
 - Start the server
 
