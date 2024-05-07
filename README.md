@@ -15,7 +15,8 @@ GiftsGenie can help the users to reduce the time in finding a perfect gifts. The
 Users of all ages who are looking for personalized gifting solutions for any occasion
 
 ### Features
-- User can securely log into his/her account 
+
+- User can securely log into his/her account(JWT auth implemented)
 - User can browse through categories and pre-made products and buy them
 - User can upload their own design and buy them
 - User can generate deisgn using text prompt
@@ -33,7 +34,7 @@ Users of all ages who are looking for personalized gifting solutions for any occ
 - Server libraries:
   - knex
   - express
-  
+
 #### External APIs used
 
 - Deep AI's API to generate images based on text prompt
@@ -47,7 +48,6 @@ Users of all ages who are looking for personalized gifting solutions for any occ
   DB_USER=<YOUR_DB_USER>
   DB_PASSWORD=<YOUR_DB_PASSWORD>
   DA_APIKEY=<SHARED>
-  
 - Install all the dependencis
 
 - Create a new MySQL Database called 'giftsgenie'
